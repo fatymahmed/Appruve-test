@@ -77,10 +77,13 @@ class Pricing extends React.Component {
   getServices = (i) =>
     this.API_response.data[i].services.map((service) => <li>service</li>);
   handleSubscribe(e) {
-    this.setState({ "btn+e.target.className[4]": "green" });
+    console.log(e.target.className);
+    this.setState({ [e.target.className]: "#7BB77B" });
+    console.log(this.state);
   }
   render() {
     const { btn0, btn1, btn2 } = this.state;
+    console.log("btn 2 is", btn2);
     return (
       <div className='Pricing'>
         <div className='plan-container'>
@@ -98,7 +101,11 @@ class Pricing extends React.Component {
                 <li key={service}>{service}</li>
               ))}
             </ul>
-            <button className='btn-0' onClick={this.handleSubscribe}>
+            <button
+              className='btn0'
+              style={{ backgroundColor: btn0 }}
+              onClick={this.handleSubscribe}
+            >
               Subscribe
             </button>
           </div>
@@ -116,7 +123,11 @@ class Pricing extends React.Component {
                 <li key={service}>{service}</li>
               ))}
             </ul>
-            <button className='btn-1' onClick={this.handleSubscribe}>
+            <button
+              className='btn1'
+              style={{ backgroundColor: btn1 }}
+              onClick={this.handleSubscribe}
+            >
               Subscribe
             </button>
           </div>
@@ -135,7 +146,7 @@ class Pricing extends React.Component {
               ))}
             </ul>
             <button
-              className='btn-2'
+              className='btn2'
               style={{ backgroundColor: btn2 }}
               onClick={this.handleSubscribe}
             >
