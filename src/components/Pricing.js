@@ -1,6 +1,11 @@
 import React from "react";
 
 class Pricing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { btn0: "white", btn1: "white", btn2: "white" };
+  }
+
   API_response = {
     object: "list",
     url: "/v1/plans",
@@ -70,55 +75,71 @@ class Pricing extends React.Component {
   };
   getServices = (i) =>
     this.API_response.data[i].services.map((service) => <li>service</li>);
-
+  handleSubscribe(e) {
+    this.setState({ "btn+e.target.className[4]": "green" });
+  }
   render() {
+    const { btn0, btn1, btn2 } = this.state;
     return (
-      <div className='Pricing' style={{ backgroundColor: "#ccc" }}>
-        <div>
-          <div>
+      <div className='Pricing'>
+        <div className='plan-container'>
+          <div className='price-plan'>
             <h2>{this.API_response.data[0].name}</h2>
             <p>{this.API_response.data[0].description}</p>
-            <p>
+            <h3 style={{ fontSize: "larger" }}>
               {this.API_response.data[0].currency}
               {this.API_response.data[0].amount}/
               {this.API_response.data[0].interval}
-            </p>
+            </h3>
             <p>{this.API_response.data[0].active_users} active users</p>
             <ul>
               {this.API_response.data[0].services.map((service) => (
-                <li>{service}</li>
+                <li key={service}>{service}</li>
               ))}
             </ul>
+            <button className='btn-0' onClick={this.handleSubscribe}>
+              Subscribe
+            </button>
           </div>
-          <div>
+          <div className='price-plan'>
             <h2>{this.API_response.data[1].name}</h2>
             <p>{this.API_response.data[1].description}</p>
-            <p>
+            <h3 style={{ fontSize: "larger" }}>
               {this.API_response.data[1].currency}
               {this.API_response.data[1].amount}/
               {this.API_response.data[1].interval}
-            </p>
+            </h3>
             <p>{this.API_response.data[1].active_users} active users</p>
             <ul>
               {this.API_response.data[1].services.map((service) => (
-                <li>{service}</li>
+                <li key={service}>{service}</li>
               ))}
             </ul>
+            <button className='btn-1' onClick={this.handleSubscribe}>
+              Subscribe
+            </button>
           </div>
-          <div>
+          <div className='price-plan'>
             <h2>{this.API_response.data[2].name}</h2>
             <p>{this.API_response.data[2].description}</p>
-            <p>
+            <h3 style={{ fontSize: "larger" }}>
               {this.API_response.data[2].currency}
               {this.API_response.data[2].amount}/
               {this.API_response.data[2].interval}
-            </p>
+            </h3>
             <p>{this.API_response.data[2].active_users} active users</p>
             <ul>
               {this.API_response.data[2].services.map((service) => (
-                <li>{service}</li>
+                <li key={service}>{service}</li>
               ))}
             </ul>
+            <button
+              className='btn-2'
+              style={{ backgroundColor: btn2 }}
+              onClick={this.handleSubscribe}
+            >
+              Subscribe
+            </button>
           </div>
         </div>
       </div>
