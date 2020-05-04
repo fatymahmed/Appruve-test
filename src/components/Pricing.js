@@ -4,6 +4,7 @@ class Pricing extends React.Component {
   constructor(props) {
     super(props);
     this.state = { btn0: "white", btn1: "white", btn2: "white" };
+    this.handleSubscribe = this.handleSubscribe.bind(this);
   }
 
   API_response = {
